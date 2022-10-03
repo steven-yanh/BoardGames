@@ -28,7 +28,6 @@ class TicTacToeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
         setupBoard()
     }
     func setupBoard() {
@@ -63,7 +62,7 @@ class TicTacToeViewController: UIViewController {
         VStack.axis = .vertical
         VStack.spacing = 8
         VStack.distribution = .fillEqually
-        VStack.backgroundColor = .black
+        VStack.backgroundColor = .label
         HStackA.axis = .horizontal
         HStackA.spacing = 8
         HStackA.distribution = .fillEqually
@@ -89,7 +88,9 @@ class TicTacToeViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle(" ", for: [])
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        button.backgroundColor = .systemYellow
+        button.backgroundColor = .systemBackground
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -103,6 +104,14 @@ extension TicTacToeViewController {
         guard let text = sender.titleLabel?.text else { return }
         if text == " " {
             sender.setTitle(playerSign, for: [])
+            switchSide()
+        }
+    }
+    func switchSide() {
+        if playerSign == "X" {
+            playerSign = "O"
+        } else {
+            playerSign = "X"
         }
     }
 }
