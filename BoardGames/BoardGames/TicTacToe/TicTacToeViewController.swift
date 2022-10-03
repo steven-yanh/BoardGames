@@ -172,18 +172,18 @@ extension TicTacToeViewController {
         }
     }
 }
-//MARK: - ChekingWinner && pop up alert
+//MARK: - ChekingWinner
 extension TicTacToeViewController {
     func checkIfWin() {
         let boardString = makeArr()
         if checkHorizontal(from: 0, boardString) || checkHorizontal(from: 3, boardString) || checkHorizontal(from: 6, boardString) {
-            print("win")
+            displayResult(forWinner: playerSign)
         }
         if checkVertical(from: 0, boardString) || checkVertical(from: 1, boardString) || checkVertical(from: 2, boardString) {
-            print("Vwin")
+            displayResult(forWinner: playerSign)
         }
         if checkDiagonal(boardString) {
-            print("dWin")
+            displayResult(forWinner: playerSign)
         }
     }
     func makeArr() -> [String] {
@@ -222,6 +222,41 @@ extension TicTacToeViewController {
     }
 }
 
+//MARK: - win handling and reset board
+extension TicTacToeViewController {
+    func displayResult(forWinner winner: String) {
+        let alert = UIAlertController(title: winner, message: winner + " Player win", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Reset", style: .default) { action in
+            self.i0.titleLabel?.text = " "
+            self.i0.setTitle(" ", for: .normal)
+            self.i1.titleLabel?.text = " "
+            self.i1.setTitle(" ", for: .normal)
+            self.i2.titleLabel?.text = " "
+            self.i2.setTitle(" ", for: .normal)
+            self.i3.titleLabel?.text = " "
+            self.i3.setTitle(" ", for: .normal)
+            self.i4.titleLabel?.text = " "
+            self.i4.setTitle(" ", for: .normal)
+            self.i5.titleLabel?.text = " "
+            self.i5.setTitle(" ", for: .normal)
+            self.i6.titleLabel?.text = " "
+            self.i6.setTitle(" ", for: .normal)
+            self.i7.titleLabel?.text = " "
+            self.i7.setTitle(" ", for: .normal)
+            self.i8.titleLabel?.text = " "
+            self.i8.setTitle(" ", for: .normal)
+        }
+        if winner == "X" {
+            xScoreInt += 1
+        } else {
+            oScoreInt += 1
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}
+
+//MARK: - Button Extension
 extension UIButton {
     func getText() -> String {
         return titleLabel?.text ?? ""
