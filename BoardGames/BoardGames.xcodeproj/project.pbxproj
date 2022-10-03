@@ -52,13 +52,21 @@
 		3BEAEC5D28EA87C700AC9536 /* BoardGames */ = {
 			isa = PBXGroup;
 			children = (
+				3BEAEC7428EAA5FB00AC9536 /* TicTacToe */,
 				3BEAEC5E28EA87C700AC9536 /* AppDelegate.swift */,
-				3BEAEC6228EA87C700AC9536 /* TicTacToeViewController.swift */,
 				3BEAEC6728EA87CA00AC9536 /* Assets.xcassets */,
 				3BEAEC6928EA87CA00AC9536 /* LaunchScreen.storyboard */,
 				3BEAEC6C28EA87CA00AC9536 /* Info.plist */,
 			);
 			path = BoardGames;
+			sourceTree = "<group>";
+		};
+		3BEAEC7428EAA5FB00AC9536 /* TicTacToe */ = {
+			isa = PBXGroup;
+			children = (
+				3BEAEC6228EA87C700AC9536 /* TicTacToeViewController.swift */,
+			);
+			path = TicTacToe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
