@@ -171,7 +171,7 @@ class TicTacToeViewController: UIViewController {
         arrowConstrain = turnArrow.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftPoint)
         arrowConstrain?.isActive = true
     }
-    func makeButton() -> UIButton {
+    private func makeButton() -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(" ", for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -320,18 +320,22 @@ extension TicTacToeViewController {
     private func resetForNextPlayer(winner: String? = nil) {
         let startPoint: CGFloat
         if winner != nil { // we have winner let other start first
-            if currentPlayer == "X" {
+            if roundForPlayer == "X" {
+                roundForPlayer = "O"
                 currentPlayer = "O"
                 startPoint = rightPoint
             } else {
+                roundForPlayer = "X"
                 currentPlayer = "X"
                 startPoint = leftPoint
             }
         } else { // no winner let player start first again
-            if currentPlayer == "X" {
+            if roundForPlayer == "X" {
                 startPoint = leftPoint
+                currentPlayer = "X"
             } else {
                 startPoint = rightPoint
+                currentPlayer = "O"
             }
         }
         self.arrowConstrain?.constant = startPoint
