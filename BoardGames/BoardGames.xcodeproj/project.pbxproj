@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B35DE3728ECF755008DE018 /* GameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35DE3628ECF755008DE018 /* GameListViewController.swift */; };
+		3B83E33A28ECEA6000DF842C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83E33928ECEA6000DF842C /* MainViewController.swift */; };
+		3B83E33D28ECED8C00DF842C /* TabBarVC+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83E33C28ECED8C00DF842C /* TabBarVC+Utils.swift */; };
 		3BEAEC5F28EA87C700AC9536 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAEC5E28EA87C700AC9536 /* AppDelegate.swift */; };
 		3BEAEC6328EA87C700AC9536 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAEC6228EA87C700AC9536 /* TicTacToeViewController.swift */; };
 		3BEAEC6828EA87CA00AC9536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BEAEC6728EA87CA00AC9536 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B35DE3628ECF755008DE018 /* GameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewController.swift; sourceTree = "<group>"; };
+		3B83E33928ECEA6000DF842C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3B83E33C28ECED8C00DF842C /* TabBarVC+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarVC+Utils.swift"; sourceTree = "<group>"; };
 		3BEAEC5B28EA87C700AC9536 /* BoardGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoardGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEAEC5E28EA87C700AC9536 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BEAEC6228EA87C700AC9536 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +39,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B83E33828ECE95F00DF842C /* File */ = {
+			isa = PBXGroup;
+			children = (
+				3BEAEC6728EA87CA00AC9536 /* Assets.xcassets */,
+				3BEAEC6928EA87CA00AC9536 /* LaunchScreen.storyboard */,
+				3BEAEC6C28EA87CA00AC9536 /* Info.plist */,
+			);
+			name = File;
+			sourceTree = "<group>";
+		};
+		3B83E33B28ECEC9800DF842C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3B83E33C28ECED8C00DF842C /* TabBarVC+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3B83E33E28ECF2F300DF842C /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				3BEAEC7428EAA5FB00AC9536 /* TicTacToe */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
 		3BEAEC5228EA87C700AC9536 = {
 			isa = PBXGroup;
 			children = (
@@ -52,11 +84,12 @@
 		3BEAEC5D28EA87C700AC9536 /* BoardGames */ = {
 			isa = PBXGroup;
 			children = (
-				3BEAEC7428EAA5FB00AC9536 /* TicTacToe */,
 				3BEAEC5E28EA87C700AC9536 /* AppDelegate.swift */,
-				3BEAEC6728EA87CA00AC9536 /* Assets.xcassets */,
-				3BEAEC6928EA87CA00AC9536 /* LaunchScreen.storyboard */,
-				3BEAEC6C28EA87CA00AC9536 /* Info.plist */,
+				3B83E33928ECEA6000DF842C /* MainViewController.swift */,
+				3B83E33E28ECF2F300DF842C /* Games */,
+				3B83E33B28ECEC9800DF842C /* Utils */,
+				3B83E33828ECE95F00DF842C /* File */,
+				3B35DE3628ECF755008DE018 /* GameListViewController.swift */,
 			);
 			path = BoardGames;
 			sourceTree = "<group>";
@@ -139,6 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B83E33D28ECED8C00DF842C /* TabBarVC+Utils.swift in Sources */,
+				3B83E33A28ECEA6000DF842C /* MainViewController.swift in Sources */,
+				3B35DE3728ECF755008DE018 /* GameListViewController.swift in Sources */,
 				3BEAEC6328EA87C700AC9536 /* TicTacToeViewController.swift in Sources */,
 				3BEAEC5F28EA87C700AC9536 /* AppDelegate.swift in Sources */,
 			);
