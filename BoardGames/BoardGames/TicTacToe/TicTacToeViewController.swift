@@ -13,6 +13,9 @@ class TicTacToeViewController: UIViewController {
     let scoreLabel = UILabel()
     let turnArrow = UIImageView()
     let OLabel = UILabel()
+    var arrowConstrain: NSLayoutConstraint?
+    let leftPoint: CGFloat = 8
+    let rightPoint: CGFloat = 312
     var xScoreInt = 0 {
         didSet {
             scoreLabel.text = String(format: "%1d : %1d", arguments: [xScoreInt,oScoreInt])
@@ -81,9 +84,11 @@ class TicTacToeViewController: UIViewController {
             scoreLabel.topAnchor.constraint(equalToSystemSpacingBelow: XLabel.topAnchor, multiplier: 3),
             scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             turnArrow.topAnchor.constraint(equalToSystemSpacingBelow: XLabel.bottomAnchor, multiplier: 1),
-            turnArrow.leadingAnchor.constraint(equalToSystemSpacingAfter: XLabel.leadingAnchor, multiplier: 1)
+            
+            
         ])
-        
+        arrowConstrain = turnArrow.leadingAnchor.constraint(equalTo: XLabel.leadingAnchor, constant: leftPoint)
+        arrowConstrain?.isActive = true
     }
     func setupBoard() {
         view.addSubview(VStack)
@@ -156,18 +161,21 @@ class TicTacToeViewController: UIViewController {
 //MARK: - Actions
 extension TicTacToeViewController {
     @objc func buttonTapped(_ sender: UIButton) {
+        print(OLabel.frame.midX)
         guard let text = sender.titleLabel?.text else { return }
         if text == " " {
             sender.titleLabel?.text = playerSign
             sender.setTitle(playerSign, for: .normal)
+            switchSide()
         }
         checkIfWin()
-        switchSide()
     }
     func switchSide() {
         if playerSign == "X" {
+            animateArrow(to: rightPoint)
             playerSign = "O"
         } else {
+            animateArrow(to: leftPoint)
             playerSign = "X"
         }
     }
@@ -227,24 +235,28 @@ extension TicTacToeViewController {
     func displayResult(forWinner winner: String) {
         let alert = UIAlertController(title: winner, message: winner + " Player win", preferredStyle: .actionSheet)
         let action = UIAlertAction(title: "Reset", style: .default) { action in
-            self.i0.titleLabel?.text = " "
-            self.i0.setTitle(" ", for: .normal)
-            self.i1.titleLabel?.text = " "
-            self.i1.setTitle(" ", for: .normal)
-            self.i2.titleLabel?.text = " "
-            self.i2.setTitle(" ", for: .normal)
-            self.i3.titleLabel?.text = " "
-            self.i3.setTitle(" ", for: .normal)
-            self.i4.titleLabel?.text = " "
-            self.i4.setTitle(" ", for: .normal)
-            self.i5.titleLabel?.text = " "
-            self.i5.setTitle(" ", for: .normal)
-            self.i6.titleLabel?.text = " "
-            self.i6.setTitle(" ", for: .normal)
-            self.i7.titleLabel?.text = " "
-            self.i7.setTitle(" ", for: .normal)
-            self.i8.titleLabel?.text = " "
-            self.i8.setTitle(" ", for: .normal)
+            DispatchQueue.main.async {
+                self.i0.titleLabel?.text = " "
+                self.i0.setTitle(" ", for: .normal)
+                self.i1.titleLabel?.text = " "
+                self.i1.setTitle(" ", for: .normal)
+                self.i2.titleLabel?.text = " "
+                self.i2.setTitle(" ", for: .normal)
+                self.i3.titleLabel?.text = " "
+                self.i3.setTitle(" ", for: .normal)
+                self.i4.titleLabel?.text = " "
+                self.i4.setTitle(" ", for: .normal)
+                self.i5.titleLabel?.text = " "
+                self.i5.setTitle(" ", for: .normal)
+                self.i6.titleLabel?.text = " "
+                self.i6.setTitle(" ", for: .normal)
+                self.i7.titleLabel?.text = " "
+                self.i7.setTitle(" ", for: .normal)
+                self.i8.titleLabel?.text = " "
+                self.i8.setTitle(" ", for: .normal)
+                self.arrowConstrain?.constant = self.leftPoint
+            }
+            
         }
         if winner == "X" {
             xScoreInt += 1
@@ -253,6 +265,16 @@ extension TicTacToeViewController {
         }
         alert.addAction(action)
         present(alert, animated: true)
+    }
+}
+//MARK: - Animations
+extension TicTacToeViewController {
+    func animateArrow(to point: CGFloat) {
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+            self.arrowConstrain?.constant = point
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
     }
 }
 
