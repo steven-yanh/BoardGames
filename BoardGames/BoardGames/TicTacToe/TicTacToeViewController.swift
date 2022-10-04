@@ -15,8 +15,9 @@ class TicTacToeViewController: UIViewController {
     let OLabel = UILabel()
     let resetButton = UIButton()
     var arrowConstrain: NSLayoutConstraint?
-    let leftPoint: CGFloat = 8
-    let rightPoint: CGFloat = 320
+    var leftPoint: CGFloat = 8
+    var rightPoint: CGFloat = 320
+    var didMove = false
     var xScoreInt = 0 {
         didSet {
             scoreLabel.text = String(format: "%1d : %1d", arguments: [xScoreInt,oScoreInt])
@@ -46,7 +47,8 @@ class TicTacToeViewController: UIViewController {
     lazy var i7: UIButton = { return makeButton() }()
     lazy var i8: UIButton = { return makeButton() }()
     
-    var playerSign = "X"
+    var currentPlayer = "X"
+    var roundForPlayer = "X"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,11 @@ class TicTacToeViewController: UIViewController {
         setupBoard()
         setupResetButton()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupArrowPosition()
+    }
+    
     func setupTitle() {
         view.addSubview(XLabel)
         view.addSubview(turnArrow)
@@ -89,8 +96,6 @@ class TicTacToeViewController: UIViewController {
             
             
         ])
-        arrowConstrain = turnArrow.leadingAnchor.constraint(equalTo: XLabel.leadingAnchor, constant: leftPoint)
-        arrowConstrain?.isActive = true
     }
     func setupBoard() {
         view.addSubview(VStack)
@@ -160,6 +165,12 @@ class TicTacToeViewController: UIViewController {
             resetButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
+    private func setupArrowPosition() {
+        leftPoint = XLabel.frame.minX + 8
+        rightPoint = OLabel.frame.minX + 8
+        arrowConstrain = turnArrow.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftPoint)
+        arrowConstrain?.isActive = true
+    }
     func makeButton() -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(" ", for: .normal)
@@ -177,11 +188,12 @@ extension TicTacToeViewController {
     @objc func buttonTapped(_ sender: UIButton) {
         guard let text = sender.titleLabel?.text else { return }
         if text == " " {
-            sender.titleLabel?.text = playerSign
-            sender.setTitle(playerSign, for: .normal)
+            didMove = true
+            sender.titleLabel?.text = currentPlayer
+            sender.setTitle(currentPlayer, for: .normal)
             if checkIfWin() {
                 ScorePlus()
-                displayResult(title: "We have a winner!", message: playerSign + " Player win!", winner: playerSign)
+                displayResult(title: "We have a winner!", message: currentPlayer + " Player win!", winner: currentPlayer)
             } else if isFull() {
                 displayResult(title: "Tie!", message: "No winner for this round")
             } else {
@@ -190,19 +202,22 @@ extension TicTacToeViewController {
         }
     }
     func switchSide() {
-        if playerSign == "X" {
+        if currentPlayer == "X" {
             animateArrow(to: rightPoint)
-            playerSign = "O"
+            currentPlayer = "O"
         } else {
             animateArrow(to: leftPoint)
-            playerSign = "X"
+            currentPlayer = "X"
         }
     }
     @objc func resetBoard(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            self.resetButtons()
-            self.switchSide()
-            self.resetForNextPlayer()
+        if didMove {
+            DispatchQueue.main.async {
+                self.resetButtons()
+                self.switchSide()
+                self.resetForNextPlayer()
+                self.didMove = false
+            }
         }
     }
     func resetButtons() {
@@ -305,15 +320,15 @@ extension TicTacToeViewController {
     private func resetForNextPlayer(winner: String? = nil) {
         let startPoint: CGFloat
         if winner != nil { // we have winner let other start first
-            if playerSign == "X" {
-                playerSign = "O"
+            if currentPlayer == "X" {
+                currentPlayer = "O"
                 startPoint = rightPoint
             } else {
-                playerSign = "X"
+                currentPlayer = "X"
                 startPoint = leftPoint
             }
         } else { // no winner let player start first again
-            if playerSign == "X" {
+            if currentPlayer == "X" {
                 startPoint = leftPoint
             } else {
                 startPoint = rightPoint
@@ -322,7 +337,7 @@ extension TicTacToeViewController {
         self.arrowConstrain?.constant = startPoint
     }
     private func ScorePlus() {
-        if playerSign == "X" {
+        if currentPlayer == "X" {
             xScoreInt += 1
         } else {
             oScoreInt += 1
