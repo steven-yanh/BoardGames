@@ -13,6 +13,7 @@ class TicTacToeViewController: UIViewController {
     let scoreLabel = UILabel()
     let turnArrow = UIImageView()
     let OLabel = UILabel()
+    let resetButton = UIButton()
     var arrowConstrain: NSLayoutConstraint?
     let leftPoint: CGFloat = 8
     let rightPoint: CGFloat = 320
@@ -51,6 +52,7 @@ class TicTacToeViewController: UIViewController {
         super.viewDidLoad()
         setupTitle()
         setupBoard()
+        setupResetButton()
     }
     func setupTitle() {
         view.addSubview(XLabel)
@@ -144,6 +146,20 @@ class TicTacToeViewController: UIViewController {
         
         
     }
+    private func setupResetButton() {
+        resetButton.setTitle("Reset", for: [])
+        resetButton.addTarget(self, action: #selector(resetBoard), for: .touchUpInside)
+        resetButton.configuration = .filled()
+        
+        view.addSubview(resetButton)
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            resetButton.topAnchor.constraint(equalToSystemSpacingBelow: scoreLabel.bottomAnchor, multiplier: 2),
+            resetButton.centerXAnchor.constraint(equalTo: scoreLabel.centerXAnchor),
+            resetButton.widthAnchor.constraint(equalToConstant: 70),
+            resetButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+    }
     func makeButton() -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(" ", for: .normal)
@@ -152,10 +168,8 @@ class TicTacToeViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 70)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }
-    
 }
 
 //MARK: - Actions
@@ -183,6 +197,34 @@ extension TicTacToeViewController {
             animateArrow(to: leftPoint)
             playerSign = "X"
         }
+    }
+    @objc func resetBoard(_ sender: UIButton) {
+        DispatchQueue.main.async {
+            self.resetButtons()
+            self.switchSide()
+            self.resetForNextPlayer()
+        }
+    }
+    func resetButtons() {
+        i0.titleLabel?.text = " "
+        i0.setTitle(" ", for: .normal)
+        i1.titleLabel?.text = " "
+        i1.setTitle(" ", for: .normal)
+        i2.titleLabel?.text = " "
+        i2.setTitle(" ", for: .normal)
+        i3.titleLabel?.text = " "
+        i3.setTitle(" ", for: .normal)
+        i4.titleLabel?.text = " "
+        i4.setTitle(" ", for: .normal)
+        i5.titleLabel?.text = " "
+        i5.setTitle(" ", for: .normal)
+        i6.titleLabel?.text = " "
+        i6.setTitle(" ", for: .normal)
+        i7.titleLabel?.text = " "
+        i7.setTitle(" ", for: .normal)
+        i8.titleLabel?.text = " "
+        i8.setTitle(" ", for: .normal)
+        
     }
 }
 //MARK: - ChekingWinner
@@ -252,26 +294,8 @@ extension TicTacToeViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         let action = UIAlertAction(title: "Reset", style: .default) { action in
             DispatchQueue.main.async {
-                self.i0.titleLabel?.text = " "
-                self.i0.setTitle(" ", for: .normal)
-                self.i1.titleLabel?.text = " "
-                self.i1.setTitle(" ", for: .normal)
-                self.i2.titleLabel?.text = " "
-                self.i2.setTitle(" ", for: .normal)
-                self.i3.titleLabel?.text = " "
-                self.i3.setTitle(" ", for: .normal)
-                self.i4.titleLabel?.text = " "
-                self.i4.setTitle(" ", for: .normal)
-                self.i5.titleLabel?.text = " "
-                self.i5.setTitle(" ", for: .normal)
-                self.i6.titleLabel?.text = " "
-                self.i6.setTitle(" ", for: .normal)
-                self.i7.titleLabel?.text = " "
-                self.i7.setTitle(" ", for: .normal)
-                self.i8.titleLabel?.text = " "
-                self.i8.setTitle(" ", for: .normal)
+                self.resetButtons()
                 self.resetForNextPlayer(winner: winner)
-                
             }
             
         }
