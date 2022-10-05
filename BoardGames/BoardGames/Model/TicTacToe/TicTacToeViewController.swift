@@ -7,7 +7,8 @@
 
 import UIKit
 
-class TicTacToeViewController: UIViewController {
+class TicTacToeViewController: GameViewController {
+    
     //title components
     let XLabel = UILabel()
     let scoreLabel = UILabel()
@@ -62,6 +63,8 @@ class TicTacToeViewController: UIViewController {
     }
     
     func setupTitle() {
+        setGameName(name: "TicTacToe")
+        title = getGameName()
         view.addSubview(XLabel)
         view.addSubview(turnArrow)
         view.addSubview(scoreLabel)

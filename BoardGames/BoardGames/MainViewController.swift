@@ -17,9 +17,8 @@ class MainViewController: UITabBarController {
         setupTabBar()
     }
     private func setuViewControllers() {
-        let n1 = UINavigationController(rootViewController: ticTacToeVC)
+        let n1 = UINavigationController(rootViewController: GameListViewController())
         n1.navigationBar.prefersLargeTitles = true
-        n1.title = "Games"
         
         n1.setTabBarImage(imageName: "gamecontroller.fill", title: "Games")
         hideNavigationBarLine(n1.navigationBar)
