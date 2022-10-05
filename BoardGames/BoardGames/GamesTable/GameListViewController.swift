@@ -20,7 +20,8 @@ class GameListViewController: UIViewController {
         title = "Games"
         tableView.dataSource = self
         tableView.delegate = self
-        print(game.games.count)
+        tableView.register(GameListCell.self, forCellReuseIdentifier: GameListCell.reuseId)
+        tableView.rowHeight = GameListCell.rowHeight
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -40,10 +41,9 @@ extension GameListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cell = UITableViewCell()
-        cell.textLabel?.text = game.games[indexPath.row].getGameName()
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.reuseId, for: indexPath) as! GameListCell
+        
         return cell
     }
     
