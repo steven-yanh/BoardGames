@@ -62,7 +62,6 @@ class TicTacToeViewController: GameViewController {
     }
     
     func setupTitle() {
-        title = getGameName()
         view.addSubview(XLabel)
         view.addSubview(turnArrow)
         view.addSubview(scoreLabel)
@@ -155,7 +154,8 @@ class TicTacToeViewController: GameViewController {
     private func setupResetButton() {
         resetButton.setTitle("Reset", for: [])
         resetButton.addTarget(self, action: #selector(resetBoard), for: .touchUpInside)
-        resetButton.configuration = .filled()
+        resetButton.backgroundColor = .tintColor
+        resetButton.layer.cornerRadius = 15
         
         view.addSubview(resetButton)
         resetButton.translatesAutoresizingMaskIntoConstraints = false
@@ -165,6 +165,7 @@ class TicTacToeViewController: GameViewController {
             resetButton.widthAnchor.constraint(equalToConstant: 70),
             resetButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+        
     }
     private func setupArrowPosition() {
         leftPoint = XLabel.frame.minX + 8
@@ -319,27 +320,32 @@ extension TicTacToeViewController {
         present(alert, animated: true)
     }
     private func resetForNextPlayer(winner: String? = nil) {
-        let startPoint: CGFloat
-        if winner != nil { // we have winner let other start first
-            if roundForPlayer == "X" {
-                roundForPlayer = "O"
-                currentPlayer = "O"
-                startPoint = rightPoint
+        if let winner = winner { // we have winner let other start first
+            if winner == roundForPlayer {
+                if roundForPlayer == "X" {
+                    startFor(player: "O")
+                } else {
+                    startFor(player: "X")
+                }
             } else {
-                roundForPlayer = "X"
-                currentPlayer = "X"
-                startPoint = leftPoint
+                startFor(player: roundForPlayer)
             }
         } else { // no winner let player start first again
-            if roundForPlayer == "X" {
-                startPoint = leftPoint
-                currentPlayer = "X"
-            } else {
-                startPoint = rightPoint
-                currentPlayer = "O"
-            }
+            startFor(player: roundForPlayer)
         }
-        self.arrowConstrain?.constant = startPoint
+    }
+    private func startFor(player: String) {
+        let startPoint: CGFloat
+        if player == "X" {
+            startPoint = leftPoint
+            roundForPlayer = "X"
+            currentPlayer = "X"
+        } else {
+            startPoint = rightPoint
+            roundForPlayer = "O"
+            currentPlayer = "O"
+        }
+        arrowConstrain?.constant = startPoint
     }
     private func ScorePlus() {
         if currentPlayer == "X" {

@@ -10,6 +10,11 @@
 		3B35DE3728ECF755008DE018 /* GameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35DE3628ECF755008DE018 /* GameListViewController.swift */; };
 		3B35DE3A28ECF81E008DE018 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35DE3928ECF81E008DE018 /* GameList.swift */; };
 		3B35DE3C28ECFB8E008DE018 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35DE3B28ECFB8E008DE018 /* GameViewController.swift */; };
+		3B4A035928EF5F0600442D9C /* ConnectFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A035828EF5F0600442D9C /* ConnectFourViewController.swift */; };
+		3B4A035B28EF5F3200442D9C /* ConnectFourBoardLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A035A28EF5F3200442D9C /* ConnectFourBoardLogic.swift */; };
+		3B4A035D28EF5F4200442D9C /* ConnectFourBoardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A035C28EF5F4200442D9C /* ConnectFourBoardItem.swift */; };
+		3B4A036228EF7D1800442D9C /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A036128EF7D1800442D9C /* Turn.swift */; };
+		3B4A036428EF822F00442D9C /* ConnectFourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A036328EF822F00442D9C /* ConnectFourCell.swift */; };
 		3B710E3D28EE49B700BEC1F5 /* GameListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B710E3C28EE49B700BEC1F5 /* GameListCellViewModel.swift */; };
 		3B710E4128EE4D4100BEC1F5 /* ConstantNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B710E4028EE4D4100BEC1F5 /* ConstantNames.swift */; };
 		3B83E33A28ECEA6000DF842C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83E33928ECEA6000DF842C /* MainViewController.swift */; };
@@ -27,6 +32,11 @@
 		3B35DE3628ECF755008DE018 /* GameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewController.swift; sourceTree = "<group>"; };
 		3B35DE3928ECF81E008DE018 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
 		3B35DE3B28ECFB8E008DE018 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		3B4A035828EF5F0600442D9C /* ConnectFourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFourViewController.swift; sourceTree = "<group>"; };
+		3B4A035A28EF5F3200442D9C /* ConnectFourBoardLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFourBoardLogic.swift; sourceTree = "<group>"; };
+		3B4A035C28EF5F4200442D9C /* ConnectFourBoardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFourBoardItem.swift; sourceTree = "<group>"; };
+		3B4A036128EF7D1800442D9C /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
+		3B4A036328EF822F00442D9C /* ConnectFourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFourCell.swift; sourceTree = "<group>"; };
 		3B710E3C28EE49B700BEC1F5 /* GameListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListCellViewModel.swift; sourceTree = "<group>"; };
 		3B710E4028EE4D4100BEC1F5 /* ConstantNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantNames.swift; sourceTree = "<group>"; };
 		3B83E33928ECEA6000DF842C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +82,18 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3B4A035728EF58DD00442D9C /* ConnectFour */ = {
+			isa = PBXGroup;
+			children = (
+				3B4A035828EF5F0600442D9C /* ConnectFourViewController.swift */,
+				3B4A035A28EF5F3200442D9C /* ConnectFourBoardLogic.swift */,
+				3B4A035C28EF5F4200442D9C /* ConnectFourBoardItem.swift */,
+				3B4A036128EF7D1800442D9C /* Turn.swift */,
+				3B4A036328EF822F00442D9C /* ConnectFourCell.swift */,
+			);
+			path = ConnectFour;
+			sourceTree = "<group>";
+		};
 		3B83E33828ECE95F00DF842C /* File */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +125,7 @@
 		3BC5838928EE0D1B000EF58B /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				3B4A035728EF58DD00442D9C /* ConnectFour */,
 				3BEAEC7428EAA5FB00AC9536 /* TicTacToe */,
 			);
 			path = Games;
@@ -233,10 +256,15 @@
 				3B710E3D28EE49B700BEC1F5 /* GameListCellViewModel.swift in Sources */,
 				3B83E33A28ECEA6000DF842C /* MainViewController.swift in Sources */,
 				3BC5838B28EE0D65000EF58B /* GameListCell.swift in Sources */,
+				3B4A036228EF7D1800442D9C /* Turn.swift in Sources */,
 				3B35DE3728ECF755008DE018 /* GameListViewController.swift in Sources */,
 				3B35DE3A28ECF81E008DE018 /* GameList.swift in Sources */,
 				3BEAEC6328EA87C700AC9536 /* TicTacToeViewController.swift in Sources */,
+				3B4A036428EF822F00442D9C /* ConnectFourCell.swift in Sources */,
+				3B4A035928EF5F0600442D9C /* ConnectFourViewController.swift in Sources */,
+				3B4A035D28EF5F4200442D9C /* ConnectFourBoardItem.swift in Sources */,
 				3BEAEC5F28EA87C700AC9536 /* AppDelegate.swift in Sources */,
+				3B4A035B28EF5F3200442D9C /* ConnectFourBoardLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

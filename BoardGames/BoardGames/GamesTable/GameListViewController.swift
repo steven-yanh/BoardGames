@@ -18,6 +18,9 @@ class GameListViewController: UIViewController {
         setupCellViewModels()
         setupTable()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.isHidden = false
+    }
     func setupTable() {
         title = "Games"
         tableView.dataSource = self
@@ -63,5 +66,6 @@ extension GameListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(game.games[indexPath.row], animated: true)
         tableView.deselectRow(at: indexPath, animated: false)
+        tableView.isHidden = true
     }
 }

@@ -8,12 +8,12 @@
 import Foundation
 struct GameList {
     
-    let games:[GameViewController] = [TicTacToeViewController()]
-    let gameNames: [String] = [K.tictactoe]
+    let games:[GameViewController] = [TicTacToeViewController(),ConnectFourViewController()]
+    let gameNames: [String] = [K.tictactoe, K.connectFour]
     
     init () {
         for i in 0..<games.count {
-            games[i].setGameAttributes(gameName: gameNames[0])
+            games[i].setGameAttributes(gameName: gameNames[i])
         }
     }
 }

@@ -8,4 +8,5 @@
 import Foundation
 struct K {
     static let tictactoe = "TicTacToe"
+    static let connectFour = "ConnectFour"
 }
