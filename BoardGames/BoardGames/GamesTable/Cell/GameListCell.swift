@@ -34,11 +34,11 @@ class GameListCell: UITableViewCell {
         Hstack.alignment = .center
         
         gameImage.translatesAutoresizingMaskIntoConstraints = false
-        gameImage.image = UIImage(named: "TicTacToe")
+        gameImage.image = UIImage(named: "Error")
         
         gameName.translatesAutoresizingMaskIntoConstraints = false
         gameName.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        gameName.text = "TicTacToe"
+        gameName.text = "Error"
         
         
         chevronImage.translatesAutoresizingMaskIntoConstraints = false
@@ -64,5 +64,8 @@ class GameListCell: UITableViewCell {
             chevronImage.widthAnchor.constraint(equalToConstant: 30)
         ])
         
+    }
+    func configure(with vm: GameListCellViewModel, for: GameListCell) {
+        vm.configure(with: vm, for: self)
     }
 }

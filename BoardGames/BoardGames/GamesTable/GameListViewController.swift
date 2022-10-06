@@ -11,9 +11,11 @@ class GameListViewController: UIViewController {
     var tableView = UITableView()
 
     let game = GameList()
+    var gamesViewModels = [GameListCellViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCellViewModels()
         setupTable()
     }
     func setupTable() {
@@ -32,6 +34,11 @@ class GameListViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    func setupCellViewModels() {
+        gamesViewModels = game.games.map { gameVC in
+            return GameListCellViewModel(gameName: gameVC.getGameName(), imageName: gameVC.getGameImageName())
+        }
+    }
     
 }
 //MARK: - Table Data source
@@ -41,8 +48,10 @@ extension GameListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        guard !game.games.isEmpty, !gamesViewModels.isEmpty else { return UITableViewCell()}
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.reuseId, for: indexPath) as! GameListCell
+        cell.configure(with: gamesViewModels[indexPath.row], for: cell)
         
         return cell
     }

@@ -50,7 +50,6 @@ class TicTacToeViewController: GameViewController {
     
     var currentPlayer = "X"
     var roundForPlayer = "X"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitle()
@@ -63,7 +62,6 @@ class TicTacToeViewController: GameViewController {
     }
     
     func setupTitle() {
-        setGameName(name: "TicTacToe")
         title = getGameName()
         view.addSubview(XLabel)
         view.addSubview(turnArrow)
