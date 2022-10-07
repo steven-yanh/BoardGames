@@ -14,7 +14,7 @@ class ConnectFourCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setupCell()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -22,9 +22,9 @@ class ConnectFourCell: UICollectionViewCell {
     
     private func setupCell() {
         circle.translatesAutoresizingMaskIntoConstraints = false
-        circle.image = UIImage(systemName: "circle.fill")
-        
         contentView.addSubview(circle)
+        circle.image = UIImage(systemName: "circle.fill")
+        circle.tintColor = .red
         NSLayoutConstraint.activate([
             circle.topAnchor.constraint(equalTo: contentView.topAnchor),
             circle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

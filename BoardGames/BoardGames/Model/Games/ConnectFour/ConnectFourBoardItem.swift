@@ -15,9 +15,17 @@ struct ConnectFourBoardItem {
     
     var state: Tile
     
+    
     mutating func toggle(_ currentTurn: Tile) {
         if self.isEmpty() {
             state = currentTurn
+        }
+    }
+    mutating func switchSide() {
+        if isRed() {
+            state = .Yellow
+        } else {
+            state = .Red
         }
     }
     

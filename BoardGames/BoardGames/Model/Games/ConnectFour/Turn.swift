@@ -6,3 +6,9 @@
 //
 
 import Foundation
+struct ConnectFourTurn {
+    var currentTurn: Tile
+    init () {
+        currentTurn = .Yellow
+    }
+}

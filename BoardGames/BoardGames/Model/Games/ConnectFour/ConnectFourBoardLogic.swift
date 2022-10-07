@@ -15,6 +15,17 @@ extension ConnectFourViewController {
             let rowArray = Array(repeating: ConnectFourBoardItem(state: .Empty), count: 7)
             board.append(rowArray)
         }
-        
+    }
+    func getBoardItem(_ indexPath: IndexPath) -> ConnectFourBoardItem {
+        return board[indexPath.section][indexPath.row]
+    }
+    func insertBoardItem(_ indexPath: IndexPath) -> Bool  {
+        for i in stride(from: 5, to: -1, by: -1) {
+            if board[i][indexPath.row].isEmpty() {
+                board[i][indexPath.row].state = currentTurn.state
+                return true
+            }
+        }
+        return false
     }
 }

@@ -13,6 +13,7 @@ class ConnectFourViewController: GameViewController {
     let turnImage = UIImageView()
     
     var board = [[ConnectFourBoardItem]]()
+    var currentTurn = ConnectFourBoardItem(state: .Yellow)
     
     weak var cv: UICollectionView!
     
@@ -20,12 +21,23 @@ class ConnectFourViewController: GameViewController {
         super.loadView()
         setupBoard()
     }
+    func setupBoard() {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let width = UIScreen.main.bounds.width
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.widthAnchor.constraint(equalToConstant: width),
+            collectionView.heightAnchor.constraint(equalToConstant: width*Double(Double(5)/7))
+        ])
+        self.cv = collectionView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCV()
         setupTitle()
     }
-    
     func setupCV() {
         resetBoard()
         cv.delegate = self
@@ -55,22 +67,18 @@ class ConnectFourViewController: GameViewController {
             turnImage.widthAnchor.constraint(equalToConstant: 40),
             cv.topAnchor.constraint(equalToSystemSpacingBelow: turnImage.bottomAnchor, multiplier: 15)
         ])
-
-        
     }
-    func setupBoard() {
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let width = UIScreen.main.bounds.width * 0.9
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.widthAnchor.constraint(equalToConstant: width),
-            collectionView.heightAnchor.constraint(equalToConstant: width*Double(Double(6)/7))
-        ])
-        self.cv = collectionView
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setCellSize()
     }
+    func setCellSize() {
+        let width = cv.frame.width / 8.5
+        let height = cv.frame.height / 6
+        let flowLayout = cv.collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.itemSize = CGSize(width: width, height: height)
+    }
+    
     
     
 }
@@ -79,13 +87,15 @@ extension ConnectFourViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return board.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return board[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConnectFourCell.reuseId, for: indexPath) as! ConnectFourCell
-        cell.circle.tintColor = board[indexPath.section][indexPath.row].getCollor()
+        let boardItem = getBoardItem(indexPath)
+        cell.circle.tintColor = boardItem.getCollor()
         return cell
     }
     
@@ -95,7 +105,11 @@ extension ConnectFourViewController: UICollectionViewDataSource {
 //MARK: - Delegate
 extension ConnectFourViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if insertBoardItem(indexPath) { //successfully insert a plate
+            currentTurn.switchSide()
+            turnImage.tintColor = currentTurn.getCollor()
+        }
+        cv.reloadData()
     }
 }
 
