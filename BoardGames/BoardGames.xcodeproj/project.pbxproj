@@ -19,6 +19,7 @@
 		3B710E4128EE4D4100BEC1F5 /* ConstantNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B710E4028EE4D4100BEC1F5 /* ConstantNames.swift */; };
 		3B83E33A28ECEA6000DF842C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83E33928ECEA6000DF842C /* MainViewController.swift */; };
 		3B83E33D28ECED8C00DF842C /* TabBarVC+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83E33C28ECED8C00DF842C /* TabBarVC+Utils.swift */; };
+		3B83EDCE28F1466900923631 /* TicTacToeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83EDCD28F1466900923631 /* TicTacToeLogic.swift */; };
 		3BC5838B28EE0D65000EF58B /* GameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC5838A28EE0D65000EF58B /* GameListCell.swift */; };
 		3BC5838F28EE1498000EF58B /* Games.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC5838D28EE1498000EF58B /* Games.png */; };
 		3BC5839028EE1498000EF58B /* TicTacToe.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC5838E28EE1498000EF58B /* TicTacToe.png */; };
@@ -41,6 +42,7 @@
 		3B710E4028EE4D4100BEC1F5 /* ConstantNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantNames.swift; sourceTree = "<group>"; };
 		3B83E33928ECEA6000DF842C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3B83E33C28ECED8C00DF842C /* TabBarVC+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarVC+Utils.swift"; sourceTree = "<group>"; };
+		3B83EDCD28F1466900923631 /* TicTacToeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeLogic.swift; sourceTree = "<group>"; };
 		3BC5838A28EE0D65000EF58B /* GameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListCell.swift; sourceTree = "<group>"; };
 		3BC5838D28EE1498000EF58B /* Games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Games.png; sourceTree = "<group>"; };
 		3BC5838E28EE1498000EF58B /* TicTacToe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TicTacToe.png; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				3BEAEC6228EA87C700AC9536 /* TicTacToeViewController.swift */,
+				3B83EDCD28F1466900923631 /* TicTacToeLogic.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				3B4A036428EF822F00442D9C /* ConnectFourCell.swift in Sources */,
 				3B4A035928EF5F0600442D9C /* ConnectFourViewController.swift in Sources */,
 				3B4A035D28EF5F4200442D9C /* ConnectFourBoardItem.swift in Sources */,
+				3B83EDCE28F1466900923631 /* TicTacToeLogic.swift in Sources */,
 				3BEAEC5F28EA87C700AC9536 /* AppDelegate.swift in Sources */,
 				3B4A035B28EF5F3200442D9C /* ConnectFourBoardLogic.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ extension ConnectFourViewController {
             let rowArray = Array(repeating: ConnectFourBoardItem(state: .Empty), count: 7)
             board.append(rowArray)
         }
+        turnImage.tintColor = currentTurn.getCollor()
     }
     func getBoardItem(_ indexPath: IndexPath) -> ConnectFourBoardItem {
         return board[indexPath.section][indexPath.row]
@@ -53,7 +54,7 @@ extension ConnectFourViewController {
     func horizontalWin() -> Bool {
         for column in 0...5 {
             var consecutive = 0
-            for row in 0...6{
+            for row in 0...6 {
                 if board[column][row].state == currentTurn.state {
                     consecutive += 1
                     if consecutive == 4 {
@@ -65,6 +66,17 @@ extension ConnectFourViewController {
         return false
     }
     func verticalWin() -> Bool {
+        for row in 0...6 {
+            var consecutive = 0
+        for column in 0...5 {
+                if board[column][row].state == currentTurn.state {
+                    consecutive += 1
+                    if consecutive == 4 {
+                        return true
+                    }
+                } else { consecutive = 0 }
+            }
+        }
         return false
     }
     func diagonalWin() -> Bool {
@@ -78,8 +90,8 @@ extension ConnectFourViewController {
     func showAlert(title: String, messgae: String) {
         let alert = UIAlertController(title: title, message: messgae, preferredStyle: .actionSheet)
         let action = UIAlertAction(title: "Reset", style: .default) { _ in
-            self.resetBoard()
             self.currentTurn.state = .Yellow
+            self.resetBoard()
             self.cv.reloadData()
         }
         alert.addAction(action)

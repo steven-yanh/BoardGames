@@ -78,9 +78,6 @@ class ConnectFourViewController: GameViewController {
         let flowLayout = cv.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.itemSize = CGSize(width: width, height: height)
     }
-    
-    
-    
 }
 //MARK: - Datasource
 extension ConnectFourViewController: UICollectionViewDataSource {
@@ -106,7 +103,6 @@ extension ConnectFourViewController: UICollectionViewDataSource {
 extension ConnectFourViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if insertBoardItem(indexPath) { //successfully insert a plate
-            turnImage.tintColor = currentTurn.getCollor()
             
             if checkWin() {
                 showAlert(title: "Win", messgae: "We have a winner!")
@@ -116,6 +112,7 @@ extension ConnectFourViewController: UICollectionViewDelegate {
                 showAlert(title: "Draw!", messgae: "No winner for this round")
             }
             currentTurn.switchSide()
+            turnImage.tintColor = currentTurn.getCollor()
         }
         cv.reloadData()
     }
