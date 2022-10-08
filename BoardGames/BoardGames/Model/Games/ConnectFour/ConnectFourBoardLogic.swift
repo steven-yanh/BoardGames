@@ -80,6 +80,37 @@ extension ConnectFourViewController {
         return false
     }
     func diagonalWin() -> Bool {
+        for row in 0...2 { //Check from left upper to right lower
+            var consecutive = 0
+            var offset = 0
+            for column in 0...3 {
+                while board[row + offset][column + offset].state == currentTurn.state {
+                    consecutive += 1
+                    offset += 1
+                    if consecutive == 4 {
+                        return true
+                    }
+                }
+                consecutive = 0
+                offset = 0
+            }
+        }
+        let revBoard: [[ConnectFourBoardItem]] = board.reversed()
+        for row in 0...2 { //Check from left lower to right upper
+            var consecutive = 0
+            var offset = 0
+            for column in 0...3 {
+                while revBoard[row + offset][column + offset].state == currentTurn.state {
+                    consecutive += 1
+                    offset += 1
+                    if consecutive == 4 {
+                        return true
+                    }
+                }
+                consecutive = 0
+                offset = 0
+            }
+        }
         return false
     }
 }
