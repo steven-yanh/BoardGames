@@ -102,14 +102,21 @@ extension ConnectFourViewController: UICollectionViewDataSource {
     
 }
 
-//MARK: - Delegate
+//MARK: - Delegate (Cheking Game Logic)
 extension ConnectFourViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if insertBoardItem(indexPath) { //successfully insert a plate
-            currentTurn.switchSide()
             turnImage.tintColor = currentTurn.getCollor()
+            
+            if checkWin() {
+                showAlert(title: "Win", messgae: "We have a winner!")
+            }
+            
+            if isFull() {
+                showAlert(title: "Draw!", messgae: "No winner for this round")
+            }
+            currentTurn.switchSide()
         }
         cv.reloadData()
     }
 }
-

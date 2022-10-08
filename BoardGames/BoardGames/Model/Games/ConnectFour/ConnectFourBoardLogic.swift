@@ -28,4 +28,62 @@ extension ConnectFourViewController {
         }
         return false
     }
+    func isFull() -> Bool {
+        for column in 0...5 {
+            for row in 0...6 {
+                if board[column][row].isEmpty() {
+                    return false
+                }
+            }
+        }
+        return true
+    }
 }
+
+//MARK: - Cheking Wins
+extension ConnectFourViewController {
+    func checkWin() -> Bool {
+        if horizontalWin() || verticalWin() || diagonalWin() {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func horizontalWin() -> Bool {
+        for column in 0...5 {
+            var consecutive = 0
+            for row in 0...6{
+                if board[column][row].state == currentTurn.state {
+                    consecutive += 1
+                    if consecutive == 4 {
+                        return true
+                    }
+                } else { consecutive = 0 }
+            }
+        }
+        return false
+    }
+    func verticalWin() -> Bool {
+        return false
+    }
+    func diagonalWin() -> Bool {
+        return false
+    }
+}
+
+//MARK: - Pop alert when game finish and reset the game
+extension ConnectFourViewController {
+    
+    func showAlert(title: String, messgae: String) {
+        let alert = UIAlertController(title: title, message: messgae, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Reset", style: .default) { _ in
+            self.resetBoard()
+            self.currentTurn.state = .Yellow
+            self.cv.reloadData()
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}
+

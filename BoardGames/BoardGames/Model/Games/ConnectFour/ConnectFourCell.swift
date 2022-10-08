@@ -26,7 +26,7 @@ class ConnectFourCell: UICollectionViewCell {
         circle.image = UIImage(systemName: "circle.fill")
         circle.tintColor = .red
         NSLayoutConstraint.activate([
-            circle.topAnchor.constraint(equalTo: contentView.topAnchor),
+            circle.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 0.25),
             circle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             circle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             circle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
